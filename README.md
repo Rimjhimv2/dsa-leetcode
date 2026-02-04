@@ -1,6 +1,0 @@
-Brute Force Idea
-The idea is simple:
-Try deleting each 0 one by one
-After deleting it, scan the array and find the longest consecutive sequence of 1s
-Take the maximum over all deletions
-If the array contains no 0, we must delete one 1, so the answer is n - 1.
