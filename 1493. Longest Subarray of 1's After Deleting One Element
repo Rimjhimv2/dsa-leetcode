@@ -1,0 +1,36 @@
+class Solution {
+public:
+int findmax(vector<int>nums,int skip_idx){
+    int n = nums.size();
+    int count = 0;
+    int maxCount= 0 ;
+    for(int i = 0 ; i <n;i++){
+        if(skip_idx==i){
+            continue;
+        }
+        if(nums[i]==1){
+            count++;
+            maxCount = max(maxCount,count);
+        }
+        else{
+            count = 0 ;
+        }
+    }
+    return maxCount;
+}
+    int longestSubarray(vector<int>& nums) {
+        int result = 0 ;
+        int countOfZero= 0;
+        int n = nums.size();
+        for(int i =0;i<n;i++){
+            if(nums[i]==0){
+                countOfZero++;
+                result = max(result,findmax(nums,i));
+            }
+        }
+        if(countOfZero==0){
+            return n-1;
+        }
+       return result; 
+    }
+};
