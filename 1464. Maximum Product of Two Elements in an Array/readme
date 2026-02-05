@@ -1,0 +1,6 @@
+Loop me hum:
+1️⃣ Sabse bada number (max1) track karte hain
+2️⃣ Dusra sabse bada (max2) track karte hain
+3️⃣ End me (max1-1)*(max2-1) return kar dete hain
+Time: O(n)
+Space: O(1)
