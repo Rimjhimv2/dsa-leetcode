@@ -25,6 +25,7 @@ public:
                 return true;
             }
         }
+        //yaha esle for loop se bahr likhenge becoz esko 1 hi baaar chalana hai 
             else{
                 mp[remainder ]=i;
             }
