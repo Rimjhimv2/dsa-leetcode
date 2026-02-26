@@ -12,7 +12,7 @@ public:
             
             int mid = low + (high - low) / 2;
             
-            // Step 1: Find max element row in mid column
+            
             int maxRow = 0;
             for (int i = 0; i < m; i++) {
                 if (mat[i][mid] > mat[maxRow][mid]) {
@@ -20,11 +20,11 @@ public:
                 }
             }
             
-            // Step 2: Check neighbors
+           
             int left  = (mid - 1 >= 0) ? mat[maxRow][mid - 1] : -1;
             int right = (mid + 1 < n) ? mat[maxRow][mid + 1] : -1;
             
-            // Step 3: Check if peak
+            
             if (mat[maxRow][mid] > left && mat[maxRow][mid] > right) {
                 return {maxRow, mid};
             }
