@@ -37,12 +37,52 @@
 
 /////best appproch
 
+
+
+
+// class Solution {
+// public:
+// int maxScore(string s) {
+
+
+//     int total_ones = count(begin(s),end(s),'1');
+//      int n = s.size();
+//     int ones = 0;
+//     int zeros = 0;
+//     int result = INT_MIN;
+//     for(int i = 0; i<=n-2;i++){
+
+//         if(s[i]=='1'){
+//             ones++;
+//         }
+
+//         else{
+//             zeros++;
+//         }
+
+//         int right_ones = total_ones- ones;
+//         result = max(result,zeros+right_ones);
+//     }
+//     return result;
+// }
+// };
+
+
+///optimize approch 
+
+//score = Zl + Or 
+//Ot = Ol + Or 
+//Or = Ot - Ol 
+
+// score = Zl + (Ot - Ol )
+//score = (Zl -Ol) + Ot
+
 class Solution {
 public:
 int maxScore(string s) {
 
 
-    int total_ones = count(begin(s),end(s),'1');
+   
      int n = s.size();
     int ones = 0;
     int zeros = 0;
@@ -57,9 +97,13 @@ int maxScore(string s) {
             zeros++;
         }
 
-        int right_ones = total_ones- ones;
-        result = max(result,zeros+right_ones);
+        
+        result = max(result,zeros-ones);
     }
-    return result;
+
+    if(s[n-1]=='1'){
+        ones++;
+    }
+    return result + ones;
 }
 };
