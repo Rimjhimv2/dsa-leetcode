@@ -2,32 +2,64 @@
 
 //n-2 isliye kyunki split ke baad right side me kam se kam 1 character rehna chahiye.
 
+/////bruteforce approch
+
+// class Solution {
+// public:
+//     int maxScore(string s) {
+//         int n = s.size();
+//         int result = INT_MIN;
+
+//         for(int i = 0;i<= n-2;i++){
+           
+//            //0 to i
+//             int zero_count = 0;
+//             for(int j = 0;j<=i;j++){
+//                 if(s[j]=='0'){
+//                     zero_count++;
+//                 }
+//             }
+//             // i+1 se n-1 tk
+//             int one_count = 0;
+//             for(int j = i+1;j<n;j++){
+//                 if(s[j]=='1'){
+//                     one_count++;
+//                 }
+//             }
+//             result = max(result,zero_count+one_count);
+//         }
+        
+//        return result; 
+//     }
+// };
+
+
+
+/////best appproch
 
 class Solution {
 public:
-    int maxScore(string s) {
-        int n = s.size();
-        int result = INT_MIN;
+int maxScore(string s) {
 
-        for(int i = 0;i<= n-2;i++){
-           
-           //0 to i
-            int zero_count = 0;
-            for(int j = 0;j<=i;j++){
-                if(s[j]=='0'){
-                    zero_count++;
-                }
-            }
-            // i+1 se n-1 tk
-            int one_count = 0;
-            for(int j = i+1;j<n;j++){
-                if(s[j]=='1'){
-                    one_count++;
-                }
-            }
-            result = max(result,zero_count+one_count);
+
+    int total_ones = count(begin(s),end(s),'1');
+     int n = s.size();
+    int ones = 0;
+    int zeros = 0;
+    int result = INT_MIN;
+    for(int i = 0; i<=n-2;i++){
+
+        if(s[i]=='1'){
+            ones++;
         }
-        
-       return result; 
+
+        else{
+            zeros++;
+        }
+
+        int right_ones = total_ones- ones;
+        result = max(result,zeros+right_ones);
     }
+    return result;
+}
 };
