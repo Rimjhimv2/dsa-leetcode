@@ -2,15 +2,15 @@ class Solution {
 public:
     int firstUniqChar(string s) {
         
-        vector<int> freq(26, 0);
+        int freq[26] = {0};   // frequency array
         
         // Step 1: Count frequency
-        for(char ch : s) {
-            freq[ch - 'a']++;
+        for(int i = 0; i < s.length(); i++) {
+            freq[s[i] - 'a']++;
         }
         
         // Step 2: Find first unique character
-        for(int i = 0; i < s.size(); i++) {
+        for(int i = 0; i < s.length(); i++) {
             if(freq[s[i] - 'a'] == 1) {
                 return i;
             }
