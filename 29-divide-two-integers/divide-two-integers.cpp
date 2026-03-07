@@ -30,3 +30,4 @@ public:
         return result;
     }
 };
+//good conraints
