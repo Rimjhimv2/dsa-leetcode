@@ -30,4 +30,4 @@ public:
         return result;
     }
 };
-//good conraints
+//good conraints with some concepts
