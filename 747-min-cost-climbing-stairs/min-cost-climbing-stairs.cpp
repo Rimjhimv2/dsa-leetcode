@@ -77,10 +77,14 @@ class Solution {
  
    int minCostClimbingStairs(vector<int>& cost) {
      int n = cost.size();
-     vector<int>dp(n+1,0);
+    
      int curr;
      int prev=0;
      int prev2 = 0;
+     //Constraints:
+
+//2 <= cost.length <= 1000
+//constarints 2 se start hai esliye yaha for loop mai koi error nahi aay a
      for(int i = 2;i<=n;i++){
         curr = min(prev+cost[i-1],
         prev2+cost[i-2]);
