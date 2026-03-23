@@ -56,21 +56,71 @@
 
 
 
+// class Solution {
+// public:
+//     int climbStairs(int n) {
+//         vector<int>dp(n+2,0);
+//         int curr;
+//         int next2 = 0;
+//         int next  = 1 ;
+
+
+//         for(int i=n-1;i>=0;i--){
+//             curr = next+next2;
+//             next2 = next;
+//             next = curr;
+//         }
+        
+//         return curr;
+//             }
+// };
+
+
+
+
+
+///so abhi tak ham 0 se n ja rahe the 
+//ab ham n se 0 jaynge 
+
+// class Solution {
+// public:
+// int count(int n){
+//  if(n<=1){
+//             return 1;
+//         }
+//         return count(n-1)+count(n-2);
+// }
+//     int climbStairs(int n) {
+  
+    
+//      return count(n);
+       
+
+
+//     }
+// };
+
+
+//now using top down approach
 class Solution {
 public:
-    int climbStairs(int n) {
-        vector<int>dp(n+2,0);
-        int curr;
-        int next2 = 0;
-        int next  = 1 ;
-
-
-        for(int i=n-1;i>=0;i--){
-            curr = next+next2;
-            next2 = next;
-            next = curr;
+    int count(int i, vector<int>& dp){
+        // Base case
+        if(i <= 1){
+            return 1;
         }
-        
-        return curr;
-            }
+
+        // Check if already computed
+        if(dp[i] != -1){
+            return dp[i];
+        }
+
+        // Store and return result
+        return dp[i] = count(i-1, dp) + count(i-2, dp);
+    }
+
+    int climbStairs(int n) {
+        vector<int> dp(n+1, -1);
+        return count(n, dp);
+    }
 };
