@@ -87,6 +87,7 @@ class Solution {
         prev2 = prev;
         prev = curr;
      }
+     //👉 “This is a DP problem optimized from O(n) space to O(1) by tracking only the last two states.”
       return curr;
     
    }
