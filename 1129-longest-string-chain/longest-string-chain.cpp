@@ -17,6 +17,8 @@ class Solution {
 public:
 int n ;
 int t[1001][1001];
+//“Then I created a helper function to check whether one word is a predecessor of another.
+// It checks if we can insert exactly one character into the previous word to form the current word while maintaining order.”
 bool isPred(string& prev,string& curr){
     int M = prev.length();
     int N = curr.length();
@@ -37,6 +39,7 @@ static bool myFunction(string &word1,string &word2){
 return word1.length() < word2.length();
 }
 
+// “I use a recursive function where i is the current index and P is the index of the previously selected word.”
 int lis(vector<string>& words,int P,int i ){
     if(i==n){
         return 0;
@@ -64,7 +67,17 @@ int lis(vector<string>& words,int P,int i ){
          n = words.size();
         sort(begin(words),end(words),myFunction);
         return lis(words,-1,0);
+        // “Finally, I start recursion from index 0 with no previous word selected.”
     }
 };
 
 
+// “At each step, I have two choices:
+
+// Take the current word if it forms a valid chain
+// Skip the current word”
+
+// “To optimize, I use a 2D DP array where t[i][P+1] stores the result for a given state.
+// I shift P by +1 because it can be -1.”
+
+//“I want to highlight that this solution initially is exponential, but with memoization it reduces to O(n² * L), and we can further optimize it using hashmap DP.”
