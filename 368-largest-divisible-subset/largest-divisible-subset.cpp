@@ -1,7 +1,7 @@
 
 // class Solution {
 // public:
-// ///ye lis ka hi approch follow kar raha but yaha hame length nahi balki longest sequence hi nikalna hai 
+//“This follows the LIS approach, but here we need to find the longest sequence itself, not just its length.”
 // void solve(int idx,vector<int>&nums,vector<int>&result,vector<int>&temp,int prev){
 //     ///base case 
 //     if(idx>= nums.size()){
@@ -46,7 +46,18 @@ for(int i = 1 ; i< n ; i++){
        if(nums[i] % nums[j] == 0){
             if(t[i]< t[j]+1){
                 t[i ] = t[j]+ 1;
+                //👉 Meaning:
+
+//Current best subset ending at i is smaller than:
+//subset at j + this element
                 prev_idx[i] = j;
+                //👉 Important:
+
+//his helps reconstruct the answer later
+
+//Means:
+
+//“j is previous element before i in subset”
 
             }
 
