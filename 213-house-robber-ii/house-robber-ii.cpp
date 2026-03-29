@@ -114,3 +114,5 @@ public:
         return max(result1, result2);
     }
 };
+//tc = O(n)
+//sc = O(n)
