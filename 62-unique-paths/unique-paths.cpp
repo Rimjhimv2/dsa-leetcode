@@ -45,7 +45,7 @@ public:
   int uniquePaths(int m, int n) {
 
     vector<vector<int>>t(m,vector<int>(n));
-
+//agar 1 d hai to ideally [0][0] hi eska source hai and yahi eska destination hai to esliye eska ans 1 hai 
     t[0][0]=1;
     ///fill 0th row 
     //yahi yaha row same hai col change hoga tof for loop lagaoo col ke liye 
