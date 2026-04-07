@@ -49,19 +49,44 @@
 ///or last se uper jaynge 
 
 
+// class Solution{
+//     public:
+
+//      int minimumTotal(vector<vector<int>>& triangle) {
+//         int n = triangle.size();
+
+//         vector<vector<int>>t = triangle;
+//         //space bhi n^2 le lia hai 
+//         for(int row = n-2 ; row>=0;row--){
+//             for(int col = 0 ; col<=row ; col++){
+
+//                 //2 for loop hai hai to yaha O(n^2);
+//                 t[row][col] = t[row][col] + min( t[row+1][col] , t[row+1][col+1]);
+
+//             }
+//         }
+//         return t[0][0];
+// }
+// };
+
+
+
 class Solution{
     public:
 
      int minimumTotal(vector<vector<int>>& triangle) {
         int n = triangle.size();
 
-        vector<vector<int>>t = triangle;
+        vector<int>t = triangle[n-1];
+        //space bhi n^2 le lia hai 
         for(int row = n-2 ; row>=0;row--){
             for(int col = 0 ; col<=row ; col++){
-                t[row][col] = t[row][col] + min( t[row+1][col] , t[row+1][col+1]);
+
+                //2 for loop hai hai to yaha O(n^2);
+                t[col] = triangle[row][col] + min( t[col] , t[col+1]);
 
             }
         }
-        return t[0][0];
+        return t[0];
 }
 };
