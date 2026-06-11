@@ -1,23 +1,29 @@
 class Solution {
 public:
-
-double solve(double x , long n ){
-    if(n == 0) {
-        return 1 ;
-    }
-    if(n < 0) {
-        return solve ( 1/x , -n );
-    }
-    if(n % 2 == 0 ){
-        return solve(x*x ,n/2);
-    }
-    return x* solve( x*x , (n-1)/2);
-}
     double myPow(double x, int n) {
-        return solve(x,(long)n);
+
+        long long N = n;
+
+        if (N < 0) {
+            x = 1 / x;
+            N = -N;
+        }
+
+        double ans = 1.0;
+
+        while (N > 0) {
+
+            if (N % 2 == 1) {   // odd power
+                ans *= x;
+            }
+
+            x *= x;    // square the base
+            N /= 2;    // halve the exponent
+        }
+
+        return ans;
     }
 };
-
 
 //Observation:
 //1️⃣ Even Power
