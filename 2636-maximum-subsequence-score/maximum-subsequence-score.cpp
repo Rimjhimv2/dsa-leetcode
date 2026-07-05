@@ -2,37 +2,43 @@ class Solution {
 public:
     long long maxScore(vector<int>& nums1, vector<int>& nums2, int k) {
 
-        int n = nums1.size();
+int n = nums1.size();
 
-        vector<pair<int,int>> v;
+//ab hame pair bnana hai 
+vector<pair<int,int>>v;
+//ese mai pairs. store karne hai 
 
-        // {nums2, nums1}
-        for(int i=0;i<n;i++)
-            v.push_back({nums2[i], nums1[i]});
+for(int i = 0 ; i< n ; i++){
+    v.push_back({nums2[i],nums1[i]});
+//ab sare pairs v mai aaaggye hai 
+}
 
-        // Sort according to nums2 descending
-        sort(v.begin(), v.end(), greater<pair<int,int>>());
+//sort karo  v ko 
 
-        priority_queue<int, vector<int>, greater<int>> pq;
+sort(v.begin(),v.end(),greater<pair<int,int>>());
 
-        long long sum = 0;
-        long long ans = 0;
 
-        for(auto &it : v){
+priority_queue<int,vector<int>,greater<int>>pq;
 
-            sum += it.second;
-            pq.push(it.second);
+//min heap bnaliya hai '
 
-            if(pq.size() > k){
-                sum -= pq.top();
-                pq.pop();
-            }
+long long sum = 0 ; 
+long long ans =0 ; 
+for(auto &it : v){
+    sum += it.second;
+    pq.push(it.second);
 
-            if(pq.size() == k){
-                ans = max(ans, sum * 1LL * it.first);
-            }
-        }
+    if(pq.size()> k){
+        sum-= pq.top();
+        pq.pop();
+    }
 
-        return ans;
+    if(pq.size() == k){
+      ans = max(ans, sum * it.first);
+    }
+}
+
+
+     return ans;
     }
 };
