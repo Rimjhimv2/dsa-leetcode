@@ -1,56 +1,69 @@
 class Solution {
 public:
+
+vector<int> getNSL(vector<int>& arr, int n ){
+    stack<int>st;
+
+    vector<int>result(n);
+    for(int i = 0 ; i < n ; i++){
+        if(st.empty()){
+            result[i]=-1;
+        }
+
+        else{
+            while(!st.empty() && arr[st.top()] > arr[i]){
+                st.pop();
+            }
+
+             result[i] = st.empty() ? -1 : st.top();
+        }
+        st.push(i);
+    }
+    return result;
+}
+
+
+vector<int> getRSL(vector<int>& arr, int n ){
+    stack<int>st;
+
+    vector<int>result(n);
+    for(int i = n-1 ; i >=0 ; i--){
+        if(st.empty()){
+            result[i]=n;
+        }
+
+        else{
+            while(!st.empty() && arr[st.top()] >= arr[i]){
+                st.pop();
+            }
+
+             result[i] = st.empty() ? n : st.top();
+        }
+        st.push(i);
+    }
+    return result;
+}
     int sumSubarrayMins(vector<int>& arr) {
 
         int n = arr.size();
-        const int MOD = 1e9 + 7;
+        const int M = 1e9 + 7;
+long long sum = 0;
+        
 
-        vector<int> prevSmaller(n), nextSmaller(n);
-        stack<int> st;
+        vector<int>NSL = getNSL(arr,n);
+        vector<int>RSL = getRSL(arr,n);
 
-        // Previous Smaller Element
-        for (int i = 0; i < n; i++) {
+        for(int i = 0 ; i< n ; i++){
 
-            while (!st.empty() && arr[st.top()] > arr[i]) {
-                st.pop();
-            }
+            long long ls = i-NSL[i];
+            long long rs = RSL[i]-i;
 
-            if (st.empty())
-                prevSmaller[i] = -1;
-            else
-                prevSmaller[i] = st.top();
+            long long totalways = ls*rs;
 
-            st.push(i);
+            sum = (sum + (ls * rs % M) * arr[i]) % M;
+
         }
+        return sum;
 
-        // Clear stack
-        while (!st.empty()) st.pop();
-
-        // Next Smaller or Equal Element
-        for (int i = n - 1; i >= 0; i--) {
-
-            while (!st.empty() && arr[st.top()] >= arr[i]) {
-                st.pop();
-            }
-
-            if (st.empty())
-                nextSmaller[i] = n;
-            else
-                nextSmaller[i] = st.top();
-
-            st.push(i);
-        }
-
-        long long ans = 0;
-
-        for (int i = 0; i < n; i++) {
-
-            long long left = i - prevSmaller[i];
-            long long right = nextSmaller[i] - i;
-
-            ans = (ans + (left * right % MOD) * arr[i]) % MOD;
-        }
-
-        return ans;
     }
 };
