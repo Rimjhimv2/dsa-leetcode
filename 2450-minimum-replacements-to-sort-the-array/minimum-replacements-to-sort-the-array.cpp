@@ -1,22 +1,23 @@
 class Solution {
 public:
     long long minimumReplacement(vector<int>& nums) {
-        
-        long long ans = 0 ;
+
+        long long ans = 0;
         int prev = nums.back();
 
-        for(int i = nums.size()-2; i>=0;i--){
-            if(nums[i]<= prev){
+        for (int i = nums.size() - 2; i >= 0; i--) {
+
+            if (nums[i] <= prev) {
                 prev = nums[i];
             }
-
-            else{
-                int part = (nums[i] + prev - 1 )/prev;
-                ans += part-1;
-                prev = nums[i]/part;
+            else {
+                int part = (nums[i] + prev - 1) / prev; // ceil(nums[i]/prev)
+                ans += part - 1;
+                prev = nums[i] / part;
             }
         }
-        return ans ;
+
+        return ans;
     }
 };
 //tumhe kitni replacement karni padegi to make the sorted array 
