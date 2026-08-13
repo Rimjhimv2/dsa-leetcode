@@ -3,12 +3,14 @@ public:
     int missingNumber(vector<int>& nums) {
         
         int n = nums.size();
-        int ans = n;//3
+        int ans = 0 ; 
 
-        for(int i = 0 ; i< n ; i++){
+        for(int i = 0 ; i<= n ; i++){
             ans^=i;//0,1,2
-            ans^=nums[i];//array ke number 
-
+            
+        }
+        for(int num : nums){
+            ans^= num;
         }
         return ans ;
     }
