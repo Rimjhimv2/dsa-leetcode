@@ -1,42 +1,49 @@
+
+
 // class Solution {
 // public:
 //     string longestCommonPrefix(vector<string>& strs) {
-        
+    
+//     for(int col = 0 ; col < strs[0].size(); col++){
+//         char  ch = strs[0][col];
 
-//         string prefix = strs[0];
-//         //flower hai 
-//         //ab hame dekhna hai ki flower bhi baki string ka prefix hia ya nahi 
-//         for(int i = 1 ; i<strs.size();i++
-//         ){
-//            while(strs[i].find(prefix) !=0){
-//             //kya flower word flow ke anfder hai or ager nahi tab tak loop vchalega last ke ek lettrt pop back se 
-//                 prefix.pop_back();
-//            } 
-
-//            if (prefix.empty()) { return ""; }
+//         for(int row = 1 ; row < strs.size(); row++){
+//             if(col >= strs[row].size() || strs[row][col] != ch){
+//                 return strs[0].substr(0,col);
+//             }
 //         }
+//     }
+//     return strs[0];
 
-//         return prefix;
+
 //     }
 // };
 
 
 
-class Solution {
+
+ class Solution {
 public:
     string longestCommonPrefix(vector<string>& strs) {
-    
-    for(int col = 0 ; col < strs[0].size(); col++){
-        char  ch = strs[0][col];
 
-        for(int row = 1 ; row < strs.size(); row++){
-            if(col >= strs[row].size() || strs[row][col] != ch){
-                return strs[0].substr(0,col);
+
+int n = strs.size();
+        string prefix = strs[0];
+        for(int i = 1 ; i< n ; i++){
+            int j = 0 ;
+            while(j< strs[i].size() && j < prefix.size() && prefix[j]==strs[i][j]){
+                j++;
+            }
+
+             prefix = prefix.substr(0,j);
+
+        if(prefix == "") {
+                return "";
             }
         }
-    }
-    return strs[0];
+
+        return prefix;
 
 
-    }
+}
 };
