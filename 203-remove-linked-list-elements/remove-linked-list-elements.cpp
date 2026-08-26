@@ -13,12 +13,12 @@ public:
     ListNode* removeElements(ListNode* head, int val) {
 
         // Agar starting ke nodes delete hone hain
-        while(head != NULL && head->val == val) {
+while(head != NULL && head->val == val) {
             ListNode* temp = head;
             head = head->next;
             delete temp;
         }
-        
+
         ListNode*curr = head;
         ListNode*prev = NULL;
         while(curr!=NULL){
