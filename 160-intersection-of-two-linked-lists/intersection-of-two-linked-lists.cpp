@@ -5,27 +5,29 @@
  *     ListNode *next;
  *     ListNode(int x) : val(x), next(NULL) {}
  * };
- */
-class Solution {
+ */class Solution {
 public:
-    ListNode *getIntersectionNode(ListNode *headA, ListNode *headB) {
-        ListNode*temp1 = headA;
-        ListNode*temp2 = headB;
+    ListNode* getIntersectionNode(ListNode* headA, ListNode* headB) {
 
-        while(temp1!=temp2){
-            if(temp1==NULL){
-                temp1 = headB;
-            }
-            else{
-                temp1 = temp1->next;
-            }
-            if(temp2==NULL){
-                temp2 = headA;
-            }
-            else{
-                temp2 = temp2->next;
-            }
+        map<ListNode*, int> mpp;
+
+        ListNode* temp = headA;
+
+        while (temp != NULL) {
+            mpp[temp] = 1;
+            temp = temp->next;
         }
-        return temp1;
+
+        temp = headB;
+
+        while (temp != NULL) {
+            if (mpp.find(temp) != mpp.end()) {
+                return temp;
+            }
+
+            temp = temp->next;
+        }
+
+        return NULL;
     }
 };
