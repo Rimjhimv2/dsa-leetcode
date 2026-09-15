@@ -20,8 +20,10 @@ public:
     }
     int left = findHeight(root->left);
     int right = findHeight(root->right);
-
+// i find the maximum path passing through that node and updaye the ans 
     ans = max(ans,left+ right);
+
+    //. For the parent, I return the better of the left or right path."
     return 1+ max(left,right);
    }
     int diameterOfBinaryTree(TreeNode* root) {
