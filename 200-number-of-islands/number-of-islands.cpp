@@ -4,12 +4,13 @@ public:
 
         int n = grid.size();
         int m = grid[0].size();
-        int count = 0;
 
-        queue<pair<int,int>> q;
+        int count = 0;
 
         int dr[] = {-1, 1, 0, 0};
         int dc[] = {0, 0, -1, 1};
+
+        queue<pair<int,int>> q;
 
         for(int i = 0; i < n; i++) {
             for(int j = 0; j < m; j++) {
@@ -18,13 +19,12 @@ public:
 
                     count++;
 
-                    q.push({i,j});
+                    q.push({i, j});
                     grid[i][j] = '0';
 
-                    // BFS for this island
                     while(!q.empty()) {
 
-                        auto [r,c] = q.front();
+                        auto [r, c] = q.front();
                         q.pop();
 
                         for(int k = 0; k < 4; k++) {
@@ -37,7 +37,7 @@ public:
                                grid[nr][nc] == '1') {
 
                                 grid[nr][nc] = '0';
-                                q.push({nr,nc});
+                                q.push({nr, nc});
                             }
                         }
                     }
