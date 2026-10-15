@@ -3,18 +3,36 @@ public:
     bool checkInclusion(string s1, string s2) {
         
 
-        int m = s1.length();
-        int n = s2.length();
+        vector<int>hash1(26,0);
+        vector<int>hash2(26,0);
 
-        if(m>n)return false;
-        sort(s1.begin(),s1.end());
+        int s1len = s1.size();
+        int s2len = s2.size();
 
-        for(int i = 0 ; i<=n-m ; i++){
-             string subS = s2.substr(i,m);
-         sort(subS.begin(),subS.end());
-             if(s1==subS){
+        if(s1len > s2len){
+            return false;
+        }
+        int left = 0;
+        int right = 0;
+
+
+        while( right < s1len){
+             hash1[s1[right] - 'a']++;
+             hash2[s2[right] - 'a']++;
+             right++;
+        }
+        right--;
+        while(right < s2len){
+            if(hash1 == hash2){
                 return true;
-             }
+            }
+            right++;
+        
+            if(right!=s2len){
+                hash2[s2[right]- 'a']++;
+                  hash2[s2[left]- 'a']--;
+            left++;
+            }
         }
         return false;
     }
