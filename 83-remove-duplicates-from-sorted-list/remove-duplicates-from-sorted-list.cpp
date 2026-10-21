@@ -11,17 +11,20 @@
 class Solution {
 public:
     ListNode* deleteDuplicates(ListNode* head) {
-        //list sorted thi esiliye duplicates sath honge toh ye ass pass ki value compare kar 
-      ListNode*curr = head;
-      while(curr!=NULL && curr->next!=NULL){
-        if(curr->val == curr->next->val){
-            curr->next = curr->next->next;
+        ListNode* originalHead = head;
+        
+        while(head!= NULL && head->next!= NULL){
+            if(head->val == head->next->val){
+                head->next = head->next->next;
+
+            }
+            else{
+                //ager koi dupliuicate hi value nhi hai toj 
+                head = head ->next;
+                //yaha se head apni ek position se aage hogya hai so 
+            }
         }
-        else{
-            //curr val dplicate nhi hai toh simply curr ko badha de 
-            curr = curr->next;
-        }
-      } 
-      return head; 
+        return originalHead;
+
     }
 };
