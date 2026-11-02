@@ -1,81 +1,22 @@
-// class Solution {
-// public:
-//     int numSubarraysWithSum(vector<int>& nums, int goal) {
-//         int n = nums.size();
-//         int ans =0;
-//         for(int i = 0 ; i<n ; i++){
-//             int sum = 0;
-//             for(int j = i ; j<n ; j++){
-//                 sum+=nums[j];
-//                 if(sum == goal){
-//                     ans++;
-//                 }
-
-//             }
-//         }
-//         return ans;
-//     }
-// };
-
-
-//  class Solution {
-// public:
-//     int numSubarraysWithSum(vector<int>& nums, int goal) {
-//         int n = nums.size();
-//         int ans = 0; 
-//         vector<int>prefix(n);
-//         prefix[0]= nums[0];
-//         for(int i = 1; i< n ; i++){
-//             prefix[i]= prefix[i-1]+ nums[i];
-//         }
-//         for(int i=0; i< n ; i++){
-//             int sum = 0;
-//             for(int j = i ; j<n ; j++){
-                
-
-//                 if(i==0){
-//                     if(prefix[j]==goal){
-//                         ans++;
-//                     }
-//                 }
-//               else{
-//                 if(prefix[j]- prefix[i-1] == goal){
-// ans++;
-//                 }
-//               }
-             
-//             }
-//         }
-
-
-// return ans;
-//     }
-//  };
-
-
-  class Solution {
+class Solution {
 public:
-     int numSubarraysWithSum(vector<int>& nums, int goal) {
-         int n = nums.size();
+    int numSubarraysWithSum(vector<int>& nums, int goal) {
+        
+        unordered_map<int,int>mp;
+        mp[0] = 1;
+        int sum = 0;
+        int count = 0;
 
-         unordered_map<int,int>mp;
-         int result = 0;
-         int currSum =0;
+        for(int i = 0 ; i< nums.size(); i++){
+            sum+= nums[i];
+            int remaining = sum - goal;
+            if(mp.find(remaining)!= mp.end()){
+                count+= mp[remaining];
 
-         mp[0]=1;
-
-         for(int x:nums){
-            currSum+=x;
-
-            int remainingSum = currSum-goal;
-
-            if(mp.find(remainingSum)!=mp.end()){
-                result += mp[remainingSum];
             }
+            mp[sum]++;
 
-            mp[currSum]++;
-         }
-return result;
-
+        }
+        return count;
     }
-  };
+};
